@@ -10,6 +10,6 @@ module.exports = {
 		'@vue/eslint-config-prettier',
 	],
 	env: {
-		jest: true
-	}
+		jest: true,
+	},
 }
