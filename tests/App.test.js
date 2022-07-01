@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
-import App from '../src/App.vue'
+import App from '@/App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import { routes } from '../src/router/routes'
+import { routes } from '@/router/routes'
 
 it('should render a heading', () => {
 	const router = createRouter({ history: createWebHistory(), routes })
