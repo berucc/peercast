@@ -1,9 +1,18 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter as _createRouter, createWebHistory } from 'vue-router'
 import { routes } from '@/router/routes'
+import { useUserStore } from '@/stores/user'
 
-const router = createRouter({
-	history: createWebHistory(import.meta.env.BASE_URL),
-	routes,
-})
+export function createRouter() {
+	const router = _createRouter({
+		history: createWebHistory(),
+		routes,
+	})
 
-export default router
+	router.beforeEach((to) => {
+		const userStore = useUserStore()
+		if (to.meta.requiresLogin && !userStore.isLoggedIn) {
+			return '/'
+		}
+	})
+	return router
+}
