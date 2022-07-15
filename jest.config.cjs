@@ -4,6 +4,13 @@
  */
 
 module.exports = {
+	globals: {
+		'ts-jest': {
+			//... // your other configurations here
+			useESM: true,
+		},
+	},
+	extensionsToTreatAsEsm: ['.ts'],
 	preset: 'ts-jest',
 	transform: {
 		'^.+\\.[t|j]s$': 'babel-jest',
