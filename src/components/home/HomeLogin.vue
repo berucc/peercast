@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import AppSection from '@/components/app/AppSection.vue'
 
 const username = ref('')
 const router = useRouter()
@@ -20,8 +21,7 @@ function login() {
 </script>
 
 <template>
-	<section class="login">
-		<h2>Login here</h2>
+	<AppSection class="login" headline="Login here">
 		<input
 			name="username"
 			v-model="username"
@@ -32,19 +32,10 @@ function login() {
 		<p v-if="showInfoText" data-label="info-text">
 			<em>Please enter a username.</em>
 		</p>
-	</section>
+	</AppSection>
 </template>
 
 <style scoped>
-.login {
-	max-width: 500px;
-	background: white;
-	padding: 1rem;
-	margin: 4rem auto;
-}
-.login h2 {
-	margin-bottom: 1rem;
-}
 .login button {
 	margin-left: 1rem;
 }
