@@ -15,7 +15,7 @@ it('should show welcome screen after successful login', async () => {
 	await wrapper.find('[data-label=username]').setValue('anyname')
 	await wrapper.find('[data-label=login-button]').trigger('click')
 	await flushPromises()
-	expect(wrapper.find('[data-label=greeting]').text()).toBe('Hi anyname')
+	expect(wrapper.find('[data-label=greeting]').text()).toContain('Hi, anyname')
 })
 
 it('should redirect to home if user directly access welcome page without login', async () => {
