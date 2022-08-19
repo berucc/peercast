@@ -9,12 +9,3 @@ import WelcomeFeedbackList from '@/components/welcome/WelcomeFeedbackList.vue'
 	<WelcomeUserList />
 	<WelcomeFeedbackList />
 </template>
-
-<style scoped>
-.feedback-list ul,
-.user-list ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-</style>

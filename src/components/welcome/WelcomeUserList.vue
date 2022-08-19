@@ -13,8 +13,8 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-	<AppSection class="user-list" headline="Your Peers">
-		<ul data-label="user-list">
+	<AppSection headline="Your Peers">
+		<ul class="reset-list" data-label="user-list">
 			<li data-label="user" :key="user.email" v-for="user in users">
 				{{ user.email }}
 				<router-link :to="`/feedback?email=${user.email}`"

@@ -13,15 +13,15 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-	<AppSection class="feedback-list" headline="Your Feedback">
-		<ul data-label="feedback-list">
+	<AppSection headline="Your Feedback">
+		<ul class="reset-list" data-label="feedback-list" v-if="feedback.length">
 			<li data-label="feedback" :key="f.author" v-for="f in feedback">
 				{{ f.author }}
 				<router-link :to="`/feedback?email=${f.author}`"
 					>give feedback</router-link
 				>
 			</li>
-			<li data-label="feedback">two</li>
 		</ul>
+		<p v-else>Sorry, you have no feedback yet.</p>
 	</AppSection>
 </template>
