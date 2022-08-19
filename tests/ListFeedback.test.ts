@@ -16,16 +16,21 @@ it('should show list of peers that sent feedback', async () => {
 	await wrapper.login()
 	const feedbackList = wrapper.find('[data-label=feedback-list]')
 	const feedback = feedbackList.findAll('[data-label=feedback]')
-	expect(feedback).toHaveLength(2)
-	expect(feedback[0].text()).toContain(EMAIL)
-	expect(feedback[0].find(`a[href="/feedback?email=${EMAIL}"]`).exists()).toBe(
-		true
-	)
-	expect(feedback[1].text()).toContain(EMAIL_2)
-	expect(
-		feedback[1].find(`a[href="/feedback?email=${EMAIL_2}"]`).exists()
-	).toBe(true)
+
 	expect(axios.get).toHaveBeenCalledWith('/api/feedback')
+	expect(feedback).toHaveLength(2)
+
+	expect(feedback[0].text()).toContain(EMAIL)
+	const readLink1 = feedback[0].find(`a[href="/feedback/read?email=${EMAIL}"]`)
+	expect(readLink1.exists()).toBe(true)
+	expect(readLink1.text()).toBe('read feedback')
+
+	expect(feedback[1].text()).toContain(EMAIL_2)
+	const readLink2 = feedback[1].find(
+		`a[href="/feedback/read?email=${EMAIL_2}"]`
+	)
+	expect(readLink2.exists()).toBe(true)
+	expect(readLink2.text()).toContain('read feedback')
 })
 
 it('should show message if no feedback is available', async () => {

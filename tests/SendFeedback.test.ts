@@ -16,7 +16,7 @@ it('should send feedback', async () => {
 	await flushPromises()
 	await wrapper.login()
 	const user = wrapper.find('[data-label=user-list] [data-label=user]')
-	const feedbackButton = user.find(`a[href="/feedback?email=${EMAIL}"]`)
+	const feedbackButton = user.find(`a[href="/feedback/give?email=${EMAIL}"]`)
 	await feedbackButton.trigger('click')
 	await flushPromises()
 	expect(wrapper.find('[data-label=feedback-view]').text()).toContain(EMAIL)
