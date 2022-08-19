@@ -40,6 +40,9 @@ async function createWrapper() {
 	const wrapper = mount(App, {
 		global: {
 			plugins: [createPinia(), router],
+			stubs: {
+				WelcomeFeedbackList: true,
+			},
 		},
 		attachTo: document.body,
 	})

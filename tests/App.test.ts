@@ -4,6 +4,8 @@ import { createPinia } from 'pinia'
 import { createRouter } from '@/router'
 import { loginPlugin } from './helpers/plugins'
 
+jest.mock('axios')
+
 it('should show an info text if username was not entered', async () => {
 	const wrapper = await createWrapper()
 	expect(wrapper.find('[data-label=info-text]').exists()).toBe(false)
@@ -29,6 +31,10 @@ async function createWrapper(initialRoute = '/') {
 	const wrapper = mount(App, {
 		global: {
 			plugins: [router, createPinia()],
+			stubs: {
+				WelcomeUserList: true,
+				WelcomeFeedbackList: true,
+			},
 		},
 	})
 	await router.push(initialRoute)
