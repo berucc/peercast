@@ -1,5 +1,6 @@
 import HomeView from '@/views/HomeView.vue'
 import WelcomeView from '@/views/WelcomeView.vue'
+import FeedbackView from '@/views/FeedbackView.vue'
 
 export const routes = [
 	{
@@ -11,6 +12,14 @@ export const routes = [
 		path: '/welcome',
 		name: 'welcome',
 		component: WelcomeView,
+		meta: {
+			requiresLogin: true,
+		},
+	},
+	{
+		path: '/feedback',
+		name: 'feedback',
+		component: FeedbackView,
 		meta: {
 			requiresLogin: true,
 		},

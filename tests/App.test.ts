@@ -1,7 +1,8 @@
-import { flushPromises, mount } from '@vue/test-utils'
+import { config, flushPromises, mount } from '@vue/test-utils'
 import App from '@/App.vue'
 import { createPinia } from 'pinia'
 import { createRouter } from '@/router'
+import { loginPlugin } from './helpers/plugins'
 
 it('should show an info text if username was not entered', async () => {
 	const wrapper = await createWrapper()
@@ -12,9 +13,7 @@ it('should show an info text if username was not entered', async () => {
 
 it('should show welcome screen after successful login', async () => {
 	const wrapper = await createWrapper()
-	await wrapper.find('[data-label=username]').setValue('anyname')
-	await wrapper.find('[data-label=login-button]').trigger('click')
-	await flushPromises()
+	await wrapper.login()
 	expect(wrapper.find('[data-label=greeting]').text()).toContain('Hi, anyname')
 })
 
@@ -26,6 +25,7 @@ it('should redirect to home if user directly access welcome page without login',
 
 async function createWrapper(initialRoute = '/') {
 	const router = createRouter()
+	config.plugins.VueWrapper.install(loginPlugin)
 	const wrapper = mount(App, {
 		global: {
 			plugins: [router, createPinia()],

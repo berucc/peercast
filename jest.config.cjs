@@ -19,10 +19,14 @@ module.exports = {
 	moduleFileExtensions: ['js', 'ts', 'vue'],
 	moduleNameMapper: {
 		'^@/(.*)$': '<rootDir>/src/$1',
+		'^#/(.*)$': '<rootDir>/domain/$1',
 	},
 	testEnvironment: 'jsdom',
 	testEnvironmentOptions: {
 		customExportConditions: ['node', 'node-addons'],
 	},
 	resetMocks: true,
+	setupFilesAfterEnv: [
+		'<rootDir>/jest.globalSetup.cjs',
+	],
 }

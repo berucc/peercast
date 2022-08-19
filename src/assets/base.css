@@ -40,14 +40,20 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 input,
+textarea,
 button {
   border: 3px solid black;
   line-height: 2;
   padding: 0 0.5rem;
   font-size: 1rem;
+  font-family: inherit;
 }
 button {
   font-weight: bold;
   color: white;
   background: black;
+}
+textarea {
+  width: 100%;
+  display: block;
 }
