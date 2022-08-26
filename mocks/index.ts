@@ -1,7 +1,10 @@
 import express from 'express'
 import { Feedback } from '../domain/feedback'
+import * as bodyParser from 'body-parser'
 
 const app = express()
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 const feedback: Feedback[] = []
 

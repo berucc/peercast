@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Feedback } from '#/feedback'
+import type { Feedback } from '#/feedback'
 import { onBeforeMount, ref } from 'vue'
 import axios from 'axios'
 import AppSection from '@/components/app/AppSection.vue'

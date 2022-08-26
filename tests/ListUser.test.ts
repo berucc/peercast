@@ -18,13 +18,13 @@ it('should show list of users', async () => {
 	expect(users).toHaveLength(2)
 	expect(users[0].text()).toContain(EMAIL)
 	const giveFeedbackLink1 = users[0].find(
-		`a[href="/feedback/give?email=${EMAIL}"]`
+		`a[href="/feedback/give?recipient=${EMAIL}"]`
 	)
 	expect(giveFeedbackLink1.exists()).toBe(true)
 	expect(giveFeedbackLink1.text()).toContain('give feedback')
 	expect(users[1].text()).toContain(EMAIL_2)
 	const giveFeedbackLink2 = users[1].find(
-		`a[href="/feedback/give?email=${EMAIL_2}"]`
+		`a[href="/feedback/give?recipient=${EMAIL_2}"]`
 	)
 	expect(giveFeedbackLink2.exists()).toBe(true)
 	expect(giveFeedbackLink2.text()).toContain('give feedback')
