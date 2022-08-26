@@ -4,7 +4,7 @@ import axios from 'axios'
 import { createRouter } from '@/router'
 import { createPinia } from 'pinia'
 import { stubGetUsers, stubPostFeedback } from './helpers/stubs'
-import { EMAIL } from './helpers/constants'
+import { AUTHOR, EMAIL } from './helpers/constants'
 import { loginPlugin } from './helpers/plugins'
 
 jest.mock('axios')
@@ -24,8 +24,10 @@ it('should send feedback', async () => {
 	expect(wrapper.find('[data-label=success-message]').exists()).toBe(false)
 	await wrapper.find('[data-label=feedback-input]').setValue('my feedback')
 	await wrapper.find('button[data-label=submit]').trigger('click')
-	expect(axios.post).toBeCalledWith(`/api/feedback/${EMAIL}`, {
-		feedback: 'my feedback',
+	expect(axios.post).toBeCalledWith(`/api/feedback`, {
+		author: AUTHOR,
+		recipient: EMAIL,
+		text: 'my feedback',
 	})
 	expect(wrapper.find('[data-label=feedback-form]').exists()).toBe(false)
 	const successMessage = wrapper.find('[data-label=success-message]')
