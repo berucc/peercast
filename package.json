@@ -2,7 +2,7 @@
 	"name": "peercast",
 	"version": "0.0.0",
 	"scripts": {
-		"dev": "concurrently 'vite' 'npm:mocks' ",
+		"dev": "concurrently 'vite' 'npm:mocks'",
 		"build": "run-p type-check build-only",
 		"preview": "vite preview --port 4173",
 		"build-only": "vite build",
@@ -10,7 +10,7 @@
 		"lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
 		"format": "prettier --write './**/*.{vue,js,ts,json,md,cjs}'",
 		"test": "jest",
-		"mocks": "npm:mocks:build & nodemon mocks/index.js",
+		"mocks": "npm run mocks:build & nodemon mocks/index.js",
 		"mocks:build": "tsc -w --esModuleInterop --preserveWatchOutput --module commonjs --skipLibCheck mocks/index.ts"
 	},
 	"dependencies": {
