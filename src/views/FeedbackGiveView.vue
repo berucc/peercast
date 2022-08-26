@@ -4,23 +4,25 @@ import { useRoute } from 'vue-router'
 import axios from 'axios'
 import AppSection from '@/components/app/AppSection.vue'
 import { useUserStore } from '@/stores/user'
-import { Feedback } from '#/feedback'
 
-const feedback = ref('')
+const feedbackText = ref('')
 const feedbackSent = ref(false)
-const email = useRoute().query?.email
+const recipientEMail = useRoute().query?.recipient.toString()
 const userStore = useUserStore()
 
 async function sendFeedback() {
-	const myFeedback = new Feedback(userStore.username, email, feedback.value)
-	await axios.post('/api/feedback', myFeedback)
+	await axios.post('/api/feedback', {
+		author: userStore.username,
+		recipient: recipientEMail,
+		text: feedbackText.value,
+	})
 	feedbackSent.value = true
 }
 </script>
 
 <template>
 	<AppSection
-		:headline="`Give Feedback to ${email}`"
+		:headline="`Give Feedback to ${recipientEMail}`"
 		data-label="feedback-view"
 	>
 		<form
@@ -28,7 +30,7 @@ async function sendFeedback() {
 			data-label="feedback-form"
 			@submit.prevent="sendFeedback"
 		>
-			<textarea data-label="feedback-input" v-model="feedback"></textarea>
+			<textarea data-label="feedback-input" v-model="feedbackText"></textarea>
 			<button data-label="submit" type="submit">Give Feedback</button>
 		</form>
 		<p v-else data-label="success-message">
