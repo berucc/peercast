@@ -6,11 +6,14 @@ import { stubGetFeedback } from './helpers/stubs'
 import { loginPlugin } from './helpers/plugins'
 import axios from 'axios'
 import { EMAIL, EMAIL_2 } from './helpers/constants'
+import { FEEDBACK } from './helpers/domain'
 
 jest.mock('axios')
 
 it('should show list of peers that sent feedback', async () => {
-	stubGetFeedback([EMAIL, EMAIL_2])
+	const feedback1 = FEEDBACK(EMAIL)
+	const feedback2 = FEEDBACK(EMAIL_2)
+	stubGetFeedback([feedback1, feedback2])
 	const wrapper = await createWrapper()
 	await flushPromises()
 	await wrapper.login()
@@ -21,7 +24,7 @@ it('should show list of peers that sent feedback', async () => {
 	expect(feedback).toHaveLength(2)
 
 	expect(feedback[0].text()).toContain(EMAIL)
-	const readLink1 = feedback[0].find(`a[href="/feedback/read?email=${EMAIL}"]`)
+	const readLink1 = feedback[0].find(`a[href="/feedback/read/${feedback1.id}"]`)
 	expect(readLink1.exists()).toBe(true)
 	expect(readLink1.text()).toBe('read feedback')
 

@@ -6,5 +6,6 @@ export function USER(email: string) {
 }
 
 export function FEEDBACK(author: string, recipient = 'recipient') {
-	return new Feedback(author, recipient, 'Lorem ipsum')
+	const randomId = (Math.random() + 1).toString(36).substring(7)
+	return new Feedback(randomId, author, recipient, 'Lorem ipsum')
 }
