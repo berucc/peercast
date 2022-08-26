@@ -1,8 +1,7 @@
 export class Feedback {
-	text: string
-	author: string
-	constructor(text: string, author: string) {
-		this.text = text
-		this.author = author
-	}
+	constructor(
+		public author: string,
+		public recipient: string,
+		public text: string
+	) {}
 }

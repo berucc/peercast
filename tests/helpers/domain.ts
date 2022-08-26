@@ -5,6 +5,6 @@ export function USER(email: string) {
 	return new User(email)
 }
 
-export function FEEDBACK(author: string) {
-	return new Feedback('Lorem ipsum', author)
+export function FEEDBACK(author: string, recipient = 'recipient') {
+	return new Feedback(author, recipient, 'Lorem ipsum')
 }

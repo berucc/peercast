@@ -14,7 +14,7 @@ it('should send feedback', async () => {
 	stubPostFeedback()
 	const wrapper = await createWrapper()
 	await flushPromises()
-	await wrapper.login()
+	await wrapper.login(AUTHOR)
 	const user = wrapper.find('[data-label=user-list] [data-label=user]')
 	const feedbackButton = user.find(`a[href="/feedback/give?email=${EMAIL}"]`)
 	await feedbackButton.trigger('click')

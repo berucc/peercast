@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import axios from 'axios'
 import AppSection from '@/components/app/AppSection.vue'
 import { useUserStore } from '@/stores/user'
+import { Feedback } from '#/feedback'
 
 const feedback = ref('')
 const feedbackSent = ref(false)
@@ -11,11 +12,8 @@ const email = useRoute().query?.email
 const userStore = useUserStore()
 
 async function sendFeedback() {
-	await axios.post('/api/feedback', {
-		author: userStore.username,
-		recipient: email,
-		text: feedback.value,
-	})
+	const myFeedback = new Feedback(userStore.username, email, feedback.value)
+	await axios.post('/api/feedback', myFeedback)
 	feedbackSent.value = true
 }
 </script>

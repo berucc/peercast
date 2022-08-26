@@ -14,8 +14,6 @@ export function stubGetFeedback(authors: string[]) {
 
 export function stubPostFeedback() {
 	when(axios.post)
-		.calledWith('/api/feedback/eins@arbi.de', {
-			feedback: 'my feedback',
-		})
+		.calledWith('/api/feedback', expect.anything())
 		.mockResolvedValueOnce({})
 }
