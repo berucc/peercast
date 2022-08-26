@@ -1,5 +1,5 @@
 import express from 'express'
-import type { Feedback } from '../domain/feedback'
+import { Feedback } from '../domain/feedback'
 
 const app = express()
 
@@ -10,11 +10,13 @@ app.get('/api/users', function (req, res) {
 })
 
 app.get('/api/feedback', function (req, res) {
-	res.send([{ author: 'eins@arbi.de', text: 'Lorem ipsum' }])
+	res.send(feedback)
 })
 
 app.post('/api/feedback', function (req, res) {
-	req.body
+	const { author, recipient, text } = req.body
+	const randomId = (Math.random() + 1).toString(36).substring(7)
+	feedback.push(new Feedback(randomId, author, recipient, text))
 	res.status(200).send()
 })
 
