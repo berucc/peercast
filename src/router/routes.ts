@@ -32,9 +32,10 @@ export const routes = [
 				component: FeedbackGiveView,
 			},
 			{
-				path: 'read',
+				path: 'read/:feedbackId',
 				name: 'readFeedback',
 				component: FeedbackReadView,
+				props: true,
 			},
 		],
 	},

@@ -17,9 +17,7 @@ onBeforeMount(async () => {
 		<ul class="reset-list" data-label="feedback-list" v-if="feedback.length">
 			<li data-label="feedback" :key="f.author" v-for="f in feedback">
 				{{ f.author }}
-				<router-link :to="`/feedback/read?email=${f.author}`"
-					>read feedback</router-link
-				>
+				<router-link :to="`/feedback/read/${f.id}`">read feedback</router-link>
 			</li>
 		</ul>
 		<p v-else>Sorry, you have no feedback yet.</p>

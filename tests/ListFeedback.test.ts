@@ -29,9 +29,7 @@ it('should show list of peers that sent feedback', async () => {
 	expect(readLink1.text()).toBe('read feedback')
 
 	expect(feedback[1].text()).toContain(EMAIL_2)
-	const readLink2 = feedback[1].find(
-		`a[href="/feedback/read?email=${EMAIL_2}"]`
-	)
+	const readLink2 = feedback[1].find(`a[href="/feedback/read/${feedback2.id}"]`)
 	expect(readLink2.exists()).toBe(true)
 	expect(readLink2.text()).toContain('read feedback')
 })
