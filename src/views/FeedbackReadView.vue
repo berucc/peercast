@@ -1,16 +1,21 @@
-<script setup>
-import { ref } from 'vue'
-import { useRoute } from 'vue-router'
+<script lang="ts" setup>
+import { onBeforeMount, ref } from 'vue'
 import AppSection from '@/components/app/AppSection.vue'
+import axios from 'axios'
+import { Feedback } from '#/feedback'
 
-const feedback = ref('')
-const feedbackSent = ref(false)
-const email = useRoute().query?.email
+const feedback = ref(null)
 
 // TODO: identify a feedback by feedback id
 // TODO: request single feedback by id and display feedback text
 
-defineProps({ feedbackId: String })
+const props = defineProps({ feedbackId: String })
+
+onBeforeMount(async () => {
+	const feedbackResponse = await axios.get<Feedback>(
+		`/api/feedback/${props.feedbackId}`
+	)
+})
 </script>
 
 <template>
@@ -18,20 +23,7 @@ defineProps({ feedbackId: String })
 		:headline="`Your Feedback from eins@arbi.de`"
 		data-label="feedback-read-view"
 	>
-		<form
-			v-if="!feedbackSent"
-			data-label="feedback-form"
-			@submit.prevent="sendFeedback"
-		>
-			<textarea data-label="feedback-input" v-model="feedback"></textarea>
-			<button data-label="submit" type="submit">Give Feedback</button>
-		</form>
-		<p v-else data-label="success-message">
-			Your feedback was successfully sent.
-			<RouterLink to="/welcome" data-label="go-back"
-				>Go back to participant list</RouterLink
-			>
-		</p>
+		<p data-label="feedback-text">Your feedback was successfully sent.</p>
 	</AppSection>
 </template>
 

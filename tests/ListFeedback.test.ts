@@ -40,6 +40,9 @@ it('should show list of peers that sent feedback', async () => {
 	expect(feedbackReadView.exists()).toBe(true)
 	expect(feedbackReadView.text()).toContain(`Your Feedback from ${EMAIL}`)
 	expect(axios.get).toHaveBeenCalledWith(`/api/feedback/${feedback1.id}`)
+	const feedbackText = wrapper.find('[data-label=feedback-text]')
+	expect(feedbackText.exists()).toBe(true)
+	expect(feedbackText.text()).toBe(feedback1.text)
 })
 
 it('should show message if no feedback is available', async () => {
