@@ -2,9 +2,9 @@
 import { onBeforeMount, ref } from 'vue'
 import AppSection from '@/components/app/AppSection.vue'
 import axios from 'axios'
-import { Feedback } from '#/feedback'
+import type { Feedback } from '#/feedback'
 
-const feedback = ref(null)
+const feedback = ref<Feedback | null>(null)
 
 // TODO: identify a feedback by feedback id
 // TODO: request single feedback by id and display feedback text
@@ -15,15 +15,16 @@ onBeforeMount(async () => {
 	const feedbackResponse = await axios.get<Feedback>(
 		`/api/feedback/${props.feedbackId}`
 	)
+	feedback.value = feedbackResponse.data
 })
 </script>
 
 <template>
 	<AppSection
-		:headline="`Your Feedback from eins@arbi.de`"
+		:headline="`Your Feedback from ${feedback?.author}`"
 		data-label="feedback-read-view"
 	>
-		<p data-label="feedback-text">Your feedback was successfully sent.</p>
+		<p data-label="feedback-text">{{ feedback?.text }}</p>
 	</AppSection>
 </template>
 

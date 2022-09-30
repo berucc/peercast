@@ -14,7 +14,7 @@ it('should show list of peers that sent feedback', async () => {
 	const feedback1 = FEEDBACK(EMAIL)
 	const feedback2 = FEEDBACK(EMAIL_2)
 	stubGetFeedbackList([feedback1, feedback2])
-	stubGetFeedback(feedback1.id)
+	stubGetFeedback(feedback1)
 	const wrapper = await createWrapper()
 	await flushPromises()
 	await wrapper.login()

@@ -16,6 +16,11 @@ app.get('/api/feedback', function (req, res) {
 	res.send(feedback)
 })
 
+app.get('/api/feedback/:feedbackId', function (req, res) {
+	const id = req.params.feedbackId
+	res.send(feedback.find((f) => f.id === id))
+})
+
 app.post('/api/feedback', function (req, res) {
 	const { author, recipient, text } = req.body
 	const randomId = (Math.random() + 1).toString(36).substring(7)

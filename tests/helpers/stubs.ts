@@ -14,10 +14,10 @@ export function stubGetFeedbackList(feedback: Feedback[]) {
 		.mockResolvedValueOnce({ data: feedback })
 }
 
-export function stubGetFeedback(feedbackId: string) {
+export function stubGetFeedback(feedback: Feedback) {
 	when(axios.get)
-		.calledWith(`/api/feedback/${feedbackId}`)
-		.mockResolvedValueOnce({ data: {} })
+		.calledWith(`/api/feedback/${feedback.id}`)
+		.mockResolvedValueOnce({ data: feedback })
 }
 
 export function stubPostFeedback() {
