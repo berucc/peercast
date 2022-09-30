@@ -21,7 +21,9 @@ it('should send feedback', async () => {
 	)
 	await feedbackButton.trigger('click')
 	await flushPromises()
-	expect(wrapper.find('[data-label=feedback-view]').text()).toContain(EMAIL)
+	expect(wrapper.find('[data-label=feedback-give-view]').text()).toContain(
+		EMAIL
+	)
 	expect(wrapper.find('[data-label=feedback-form]').exists()).toBe(true)
 	expect(wrapper.find('[data-label=success-message]').exists()).toBe(false)
 	await wrapper.find('[data-label=feedback-input]').setValue('my feedback')

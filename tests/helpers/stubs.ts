@@ -8,10 +8,16 @@ export function stubGetUsers(emails: string[]) {
 	when(axios.get).calledWith('/api/users').mockResolvedValueOnce({ data })
 }
 
-export function stubGetFeedback(feedback: Feedback[]) {
+export function stubGetFeedbackList(feedback: Feedback[]) {
 	when(axios.get)
 		.calledWith('/api/feedback')
 		.mockResolvedValueOnce({ data: feedback })
+}
+
+export function stubGetFeedback(feedbackId: string) {
+	when(axios.get)
+		.calledWith(`/api/feedback/${feedbackId}`)
+		.mockResolvedValueOnce({ data: {} })
 }
 
 export function stubPostFeedback() {

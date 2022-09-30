@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import axios from 'axios'
 import AppSection from '@/components/app/AppSection.vue'
 
 const feedback = ref('')
@@ -11,16 +10,13 @@ const email = useRoute().query?.email
 // TODO: identify a feedback by feedback id
 // TODO: request single feedback by id and display feedback text
 
-async function sendFeedback() {
-	await axios.post('/api/feedback/eins@arbi.de', { feedback: feedback.value })
-	feedbackSent.value = true
-}
+defineProps({ feedbackId: String })
 </script>
 
 <template>
 	<AppSection
-		:headline="`Give Feedback to ${email}`"
-		data-label="feedback-view"
+		:headline="`Your Feedback from eins@arbi.de`"
+		data-label="feedback-read-view"
 	>
 		<form
 			v-if="!feedbackSent"

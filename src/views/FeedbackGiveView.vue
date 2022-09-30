@@ -23,7 +23,7 @@ async function sendFeedback() {
 <template>
 	<AppSection
 		:headline="`Give Feedback to ${recipientEMail}`"
-		data-label="feedback-view"
+		data-label="feedback-give-view"
 	>
 		<form
 			v-if="!feedbackSent"
